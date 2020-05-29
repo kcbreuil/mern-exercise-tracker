@@ -4,6 +4,9 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+const exercisesRouter = require("./backend/routes/exercises");
+const usersRouter = require("./backend/routes/users");
+
 /* loads the dotenv library and calls the config() method, which loads the 
 variables declared in the .env file into process.env */
 require("dotenv").config();
@@ -28,6 +31,9 @@ which means it is a method/function/operation that is called between processing
 an incoming request and returning a response */
 app.use(express.json());
 
+app.use("/exercises", exercisesRouter);
+app.use("/users", usersRouter);
+
 // what does this do?
 const uri = process.env.ATLAS_URI;
 
@@ -48,12 +54,6 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
-
-const exercisesRouter = require("./backend/routes/exercises");
-const usersRouter = require("./backend/routes/users");
-
-app.use("/exercises", exercisesRouter);
-app.use("/users", usersRouter);
 
 // what does this do?
 app.listen(port, () => {
