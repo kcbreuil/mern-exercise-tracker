@@ -1,11 +1,8 @@
-// client/src/components/CreateUser.js
-
 import React, { useState } from "react";
 import axios from "axios";
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
-
   const changeUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -33,7 +30,8 @@ const CreateUser = () => {
             type="text"
             required
             className="form-control"
-            defaultValue={username}
+            // defaultValue={username}
+            value={username}
             onChange={changeUsername}
           />
         </div>

@@ -1,6 +1,5 @@
-// client/src/components/CreateExercise.js
-
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const CreateExercise = () => {
@@ -8,7 +7,7 @@ const CreateExercise = () => {
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState(0);
   const [users, setUsers] = useState([""]);
-  //   let history = useHistory();
+  let history = useHistory();
 
   useEffect(() => {
     axios
@@ -47,7 +46,7 @@ const CreateExercise = () => {
     axios
       .post("http://localhost:5000/exercises/add", exercise)
       .then((res) => console.log(res.data));
-    // history.push("/");
+    history.push("/");
   };
 
   return (
